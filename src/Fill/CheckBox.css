@@ -1,0 +1,13 @@
+
+
+.checkbox-header {
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 3px;
+}
+
+.checkbox-option, .checkbox-header {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}

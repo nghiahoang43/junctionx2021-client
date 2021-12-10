@@ -1,0 +1,44 @@
+
+.field-card {
+  width: 100%;
+  border: none;
+  padding: 12px 25px 25px;
+  margin-bottom: 20px;
+  background-color: #FFDCDC;
+  cursor: pointer;
+  border-radius: 6px;
+  position: relative;
+}
+
+.field-input {
+  outline: none;
+  width: 100%;
+  border: none;
+  padding: 5px;
+  background-color: white;
+  border-radius: 3px;
+}
+
+.resize {
+  border: 1px solid black;
+  overflow: auto;
+}
+.resize.horizontal {
+  resize: horizontal;
+}
+.resize.vertical {
+  resize: vertical;
+}
+.resize.both {
+  resize: both;
+}
+
+.delete-btn-container {
+  text-align: right;
+}
+
+.delete-btn{
+  border: none;
+  outline: none;
+  background-color: transparent;
+}

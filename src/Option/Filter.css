@@ -1,0 +1,49 @@
+.form-filter {
+    justify-content: space-between;
+}
+
+.form-filter h2 {
+    margin-bottom: 35px;
+    font-weight: bolder;
+    color: #EC255A;
+    ;
+}
+
+.filter-part {
+    margin-bottom: 60px;
+}
+
+.drop-down-filter, .label-input, .required{
+    border: 1px solid;
+    width: 70%;
+    height: 40px;
+    margin: 10px 0px;
+    padding: 7px 0px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.label-input {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.drop-down, .required {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.add-card-btn {
+    width: 90px;
+    height: 40px;
+    background-color: #EC255A;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    transition: 0.3s;
+    color: white;
+}
+
+.add-card-btn:hover {
+    transform: scale(1.05);
+}
