@@ -9,7 +9,8 @@ import ListForm from './component/listForm';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CreateForm />
+    {/* <CreateForm /> */}
+    <ListForm/>
   </React.StrictMode>,
   document.getElementById('root')
 );

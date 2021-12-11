@@ -10,75 +10,115 @@ const Filter = (props) => {
   const [isCheckbox, setIsCheckbox] = useState(false);
   const [isRadio, setIsRadio] = useState(false);
   const [newCard, setNewCard] = useState({
-    label: 'New Label',
-    type: 'text',
+    label: "New Label",
+    type: "text",
     isRequired: true,
     count: 0,
   });
-  // const [selectType, setSelectType] = useState("text");
-  // const [selectRequired, setSelectRequired] = useState("text");
 
   const handleLabelChange = (value) => {
     setNewCard({
       ...newCard,
       label: value,
-    })
-  }
+    });
+  };
 
   const handleTypeChange = (value) => {
-    if (value === 'drop-down') {
+    if (value === "drop-down") {
       setIsDropdown(true);
-    }
-    else {
+      newCard.count = 2;
+    } else {
       setIsDropdown(false);
     }
-    if (value === 'check-box') {
+    if (value === "check-box") {
       setIsCheckbox(true);
-    }
-    else {
+      newCard.count = 2;
+    } else {
       setIsCheckbox(false);
     }
-    if (value === 'radio') {
+    if (value === "radio") {
       setIsRadio(true);
-    }
-    else {
+      newCard.count = 2;
+    } else {
       setIsRadio(false);
     }
+
     setNewCard({
       ...newCard,
       type: value,
-    })
+    });
   };
 
   const handleRequiredChange = (value) => {
     setNewCard({
       ...newCard,
-      isRequired: (value==='true'? true : false),
-    })
+      isRequired: value === "true" ? true : false,
+    });
   };
 
   const handleCount = (event) => {
+    if (event.target.value < event.target.defaultValue) {
+      event.target.value = event.target.defaultValue;
+    }
+
     setNewCard({
       ...newCard,
       count: parseInt(event.target.value),
-    })
-  }
+    });
+  };
 
   const createNewCard = () => {
-    console.log(newCard);
     props.onCreateNewCard(newCard);
-  }
+  };
 
   return (
     <div className="form-filter">
       <h2>Create New Form</h2>
-      <LabelOption onHandleChange={handleLabelChange}/>
-      <TypeOption onHandleChange={handleTypeChange}/>
-      {isDropdown ? (<div className="filter-part"><h4>Number of Options</h4><input className="label-input" type="number" defaultValue="2" onChange={handleCount}></input></div>):(<></>)}
-      {isCheckbox ? (<div className="filter-part"><h4>Number of Checkboxes</h4><input className="label-input" type="number" defaultValue="2" onChange={handleCount}></input></div>):(<></>)}
-      {isRadio ? (<div className="filter-part"><h4>Number of Options</h4><input className="label-input" type="number" defaultValue="2" onChange={handleCount}></input></div>):(<></>)}
-      <RequiredOption onHandleChange={handleRequiredChange}/>
-      <button className="add-card-btn" onClick={createNewCard}>Generate</button>
+      <LabelOption onHandleChange={handleLabelChange} />
+      <TypeOption onHandleChange={handleTypeChange} />
+      {isDropdown ? (
+        <div className="filter-part">
+          <h4>Number of Options</h4>
+          <input
+            className="label-input"
+            type="number"
+            defaultValue="2"
+            onChange={handleCount}
+          ></input>
+        </div>
+      ) : (
+        <></>
+      )}
+      {isCheckbox ? (
+        <div className="filter-part">
+          <h4>Number of Checkboxes</h4>
+          <input
+            className="label-input"
+            type="number"
+            defaultValue="1"
+            onChange={handleCount}
+          ></input>
+        </div>
+      ) : (
+        <></>
+      )}
+      {isRadio ? (
+        <div className="filter-part">
+          <h4>Number of Options</h4>
+          <input
+            className="label-input"
+            type="number"
+            defaultValue="2"
+            onChange={handleCount}
+          ></input>
+        </div>
+      ) : (
+        <></>
+      )}
+      <RequiredOption onHandleChange={handleRequiredChange} />
+      <button className="add-card-btn" onClick={createNewCard}>
+        Generate
+      </button>
     </div>
   );
 };

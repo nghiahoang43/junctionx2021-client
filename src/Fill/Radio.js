@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import "./Radio.css";
 const Radio = (props) => {
   const [value, setValue] = useState(props.options[0]);
+  const saveOption = (event) => {
+    let index = parseInt(event.target.name);
+    props.options[index].option = event.target.value;
+    props.onChangeOption(props.options);
+}
   return (
-    <div className="">
-      <h1>{props.header}</h1>
+    <div>
+      <input className="checkbox-header" type="text" defaultValue={props.header}></input>
       <div className="radio-btn-container">
         {props.options.map((element, index) => {
           return (
@@ -16,7 +21,7 @@ const Radio = (props) => {
               }}
             >
               <input type="radio" value={value} checked={value === element.option} readOnly/>
-               <span> {element.option}</span>
+              <input className="checkbox-option" name={index} type="text" defaultValue={element.option} onChange={saveOption}></input>
             </div>
           );
         })}
