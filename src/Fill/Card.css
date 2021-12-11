@@ -42,3 +42,13 @@
   outline: none;
   background-color: transparent;
 }
+
+.dropdown-input {
+  outline: none;
+  width: 100%;
+  border: none;
+  padding: 5px;
+  margin: 7px;
+  background-color: white;
+  border-radius: 3px;
+}

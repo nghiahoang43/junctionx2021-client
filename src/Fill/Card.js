@@ -2,16 +2,19 @@ import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import "./Card.css";
 import CheckBox from "./CheckBox";
-import Dropdown from "./Dropdown";
+// import Dropdown from "./Dropdown";
 import Radio from "./Radio";
 import Label from "./Label";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import PhoneNumber from "./PhoneNumber";
+import DropdownPreview from './DropdownPreview'
 
-export const Card = ({ id, type, label, isRequired, count, index, moveCard, remove }) => {
+export const Card = ({ id, type, label, isRequired, options, index, moveCard, remove, onChangeOptionContainer }) => {
+  // console.log(label)
+  // console.log(options)
+  // options = [];
   const ref = useRef(null);
-  // let display = 'inline-block';
   const [{ handlerId }, drop] = useDrop({
     accept: "card",
     collect(monitor) {
@@ -37,12 +40,6 @@ export const Card = ({ id, type, label, isRequired, count, index, moveCard, remo
         (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
       // Determine mouse position
       const clientOffset = monitor.getClientOffset();
-      // console.log(clientOffset)
-      // if (clientOffset.y >= hoverBoundingRect.top && clientOffset.y <= (hoverBoundingRect.top+75)) {
-      //     // let row = (hoverBoundingRect.top - 10)/75;
-      //     setDisplay('static');
-      //     // console.log(display);
-      // }
       // Get pixels to the top
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
       // Only perform the move when the mouse has crossed half of the items height
@@ -77,20 +74,16 @@ export const Card = ({ id, type, label, isRequired, count, index, moveCard, remo
   });
 
   const opacity = isDragging ? 0 : 1;
-  let options = [];
-  if ((type==="check-box")||(type==="radio")) {
-    for (let i = 0; i < count; i++) {
-      let index = i+1;
-      options.push({
-        id: i+1,
-        option: 'Option '+ index,
-      })
-    }
-  }
+
   
   const deleteHandler = (event) => {
     // remove(id);
-    console.log(id)
+    // console.log(id)
+  }
+
+  const changeOptionCard = (options) => {
+    // console.log(options)
+    onChangeOptionContainer(id, options)
   }
 
   drag(drop(ref));
@@ -158,7 +151,7 @@ export const Card = ({ id, type, label, isRequired, count, index, moveCard, remo
         data-handler-id={handlerId}>
           <div className="delete-btn-container"><button className="delete-btn" onClick={deleteHandler} ><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon></button></div>
           <Label label={label} isRequired={isRequired}></Label>
-          <CheckBox header={"Choose something"} options={options}></CheckBox>
+          <CheckBox header={"Choose something"} options={options} onChangeOption={changeOptionCard}></CheckBox>
         </div>
       );
     case "drop-down":
@@ -169,7 +162,11 @@ export const Card = ({ id, type, label, isRequired, count, index, moveCard, remo
         data-handler-id={handlerId}>
           <div className="delete-btn-container"><button className="delete-btn" onClick={deleteHandler} ><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon></button></div>
           <Label label={label} isRequired={isRequired}></Label>
-          <Dropdown count={count}></Dropdown>
+          {/* <Dropdown count={count}></Dropdown>
+           */}
+           <DropdownPreview count={options.length} options={options} onChangeOption={changeOptionCard}></DropdownPreview>
+           
+           
         </div>)
     case "radio":
       return (<div 
@@ -179,7 +176,7 @@ export const Card = ({ id, type, label, isRequired, count, index, moveCard, remo
         data-handler-id={handlerId}>
           <div className="delete-btn-container"><button className="delete-btn" onClick={deleteHandler} ><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon></button></div>
           <Label label={label} isRequired={isRequired}></Label>
-          <Radio header={"Choose something"} options={options}></Radio>
+          <Radio header={"Choose something"} options={options} onChangeOption={changeOptionCard}></Radio>
         </div>)
     case "phone-number":
       return (<div 

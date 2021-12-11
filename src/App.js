@@ -12,49 +12,91 @@ function App() {
       label: "Last Name",
       type: "text",
       isRequired: true,
-      count: 0,
+      // count: 0,
+      options: [],
     },
     {
       id: 2,
       label: "Age",
       type: "phone-number",
       isRequired: false,
-      count: 0,
+      // count: 0,
+      options: [],
     },
     {
       id: 3,
       label: "Check Box 1",
       type: "radio",
       isRequired: true,
-      count: 3,
+      // count: 3,
+      options: [
+        {
+          id: 1,
+          option: 'Van',
+        },
+        {
+          id: 2,
+          option: 'Hung',
+        },
+        {
+          id: 3,
+          option: 'Hieu'
+        }
+      ],
     },
     {
       id: 4,
       label: "School",
       type: "text",
       isRequired: true,
-      count: 0,
+      // count: 0,
+      options: [],
     },
     {
       id: 5,
       label: "Date of Birth",
       type: "date",
       isRequired: false,
-      count: 0,
+      // count: 0,
+      options: [],
     },
     {
       id: 6,
       label: "Check Box 2",
       type: "check-box",
       isRequired: false,
-      count: 2,
+      // count: 2,
+      options: [
+        {
+          id: 1,
+          option: 'Nghia',
+        },
+        {
+          id: 2,
+          option: 'Hoang',
+        }
+      ],
     },
     {
       id: 7,
       label: "Class",
       type: "drop-down",
       isRequired: true,
-      count: 3,
+      // count: 3,
+      options: [
+        {
+          id: 1,
+          option: '',
+        },
+        {
+          id: 2,
+          option: '',
+        },
+        {
+          id: 3,
+          option: '',
+        }
+      ],
     },
   ]);
 
@@ -64,22 +106,40 @@ function App() {
 
   const generateCard = (card) => {
     const index = cards.length;
+    let options = [];
+    for (let i = 0; i < card.count; i++) {
+      options.push({
+        id: i+1,
+        option: '',
+      })
+      
+    }
     const newCard = {
       id: index + 1,
       label: card.label,
       type: card.type,
       isRequired: card.isRequired,
-      count: card.count,
+      options: options,
     };
+    console.log(newCard);
     setCards([...cards, newCard]);
   };
 
-  console.log(cards);
+  const changeOption = (id, options) => {
+    cards.forEach(element => {
+      if (element.id === id) {
+        element.options = options;
+        // console.log(element.options)
+      }
+    });
+  }
+
+
   return (
     <div className="App">
       <Option onAddCard={generateCard}></Option>
       <DndProvider backend={HTML5Backend}>
-        <Container cards={cards} onSetCards={changeCard} />
+        <Container cards={cards} onSetCards={changeCard} onChangeOption={changeOption}/>
       </DndProvider>
     </div>
   );
