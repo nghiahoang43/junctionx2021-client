@@ -1,24 +1,28 @@
-import React,{ useState } from "react";
-import { Menu, MenuItem, MenuButton, MenuRadioGroup } from "@szhsin/react-menu";
-import '@szhsin/react-menu/dist/index.css';
-import '@szhsin/react-menu/dist/transitions/slide.css';
-import './Radio.css'
+import React, { useState } from "react";
+import "./Radio.css";
 const Radio = (props) => {
-    const [textColor, setTextColor] = useState('red');
-    console.log(props)
-    return(<Menu  menuButton={<MenuButton className="radio-header">{props.header} <i>(click here)</i></MenuButton>}>
-        <MenuRadioGroup className="radio-box" value={textColor}
-            onRadioChange={e => setTextColor(e.value)}>
-                
-            {/* <MenuItem value="red">Red</MenuItem>
-            <MenuItem value="green">Green</MenuItem>
-            <MenuItem value="blue">Blue</MenuItem> */}
-            {props.options.map((element, index) => {
-            return (<MenuItem key={index} value={element.option}>{element.option}</MenuItem>)
+  const [value, setValue] = useState(props.options[0]);
+  return (
+    <div className="">
+      <h1>{props.header}</h1>
+      <div className="radio-btn-container">
+        {props.options.map((element, index) => {
+          return (
+            <div
+                key={index}
+              className="radio-btn"
+              onClick={() => {
+                setValue(element.option);
+              }}
+            >
+              <input type="radio" value={value} checked={value === element.option} readOnly/>
+               <span> {element.option}</span>
+            </div>
+          );
         })}
-        </MenuRadioGroup>
-    </Menu>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
 export default Radio;

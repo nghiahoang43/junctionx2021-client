@@ -5,7 +5,7 @@ const RequiredOption = (props) => {
     }
 
     return (<div className="filter-part">
-    <h4>Required/Optional</h4>
+    <h4>Required?</h4>
     <select
       className="required"
       defaultValue="required"

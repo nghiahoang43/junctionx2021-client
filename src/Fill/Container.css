@@ -1,6 +1,6 @@
 .new-container {
     display: inline-block;
-    margin: 40px 10px;
+    margin: auto;
     width: 70%;
     padding: 30px;
     justify-content: space-between;
@@ -19,6 +19,7 @@
 }
 
 .container-header input {
+    width: 100%;
     background-color: transparent;
     border: none;
     outline: none;
@@ -44,4 +45,39 @@
 
 .create-form-btn:hover {
     transform: scale(1.05);
+}
+.create-field-btn {
+    width: 180px;
+    height: 40px;
+    background-color: #EC255A;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    margin-top: 30px;
+    transition: 0.3s;
+    color: white;
+    float: left;
+}
+
+.create-field-btn:hover {
+    transform: scale(1.05);
+}
+@media only screen
+  and (min-device-width : 768px)
+  and (max-device-width : 1024px)
+  and (orientation:portrait) 
+{
+    .new-container {
+        width: 100%;
+    }
+}
+@media only screen
+and (min-device-width : 414px)
+and (max-device-width : 736px)
+and (orientation:portrait) 
+{
+  .new-container {
+      width: 100%;
+  }
 }

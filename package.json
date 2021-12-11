@@ -20,6 +20,7 @@
     "react-phone-number-input": "^3.1.44",
     "react-resizable": "^3.0.4",
     "react-scripts": "4.0.3",
+    "reactjs-popup": "^2.0.5",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
