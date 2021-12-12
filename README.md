@@ -2,7 +2,7 @@
 ### by GrandTich
 ## Installation
 
-Dynamic Form requires [Node.js](https://nodejs.org/) v10+ to run.
+Dynamic Form requires [Node.js](https://nodejs.org/) v12+ to run.
 
 ```sh
 cd client
