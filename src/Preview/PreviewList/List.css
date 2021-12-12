@@ -1,0 +1,13 @@
+.list {
+    width: 20%;
+    border-radius: 5px;
+    height: 100%;
+    margin: 40px 25px;
+    padding: 20px 0px;
+    text-align: center;
+    border: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
+   -webkit-box-shadow: 0px 0px 15px 7px rgba(0,0,0,0.15);
+   -moz-box-shadow: 0px 0px 15px 7px rgba(0,0,0,0.15);
+    background-color: #FFB4B4;
+}

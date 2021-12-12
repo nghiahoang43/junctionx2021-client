@@ -5,12 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CreateForm from './component/createForm'
 import ListForm from './component/listForm';
+import { BrowserRouter } from 'react-router-dom';
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <CreateForm />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
