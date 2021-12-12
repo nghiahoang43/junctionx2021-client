@@ -1,5 +1,5 @@
 # junctionx2021
-### GrandTich
+### by GrandTich
 ## Installation
 
 Dynamic Form requires [Node.js](https://nodejs.org/) v10+ to run.
